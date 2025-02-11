@@ -1,0 +1,91 @@
+version: "3.1"
+
+actions:
+  - action_search_flights
+  - action_handoff_to_human
+
+slots:
+  departure_city:
+    type: text
+  arrival_city:
+    type: text
+  departure_date:
+    type: text
+  return_date:
+    type: text
+  travel_class:
+    type: categorical
+    values:
+      - economy
+      - business
+      - first class
+  search_rating:
+    type: float
+    min_value: 1
+    max_value: 5
+
+responses:
+  utter_help_user:
+    - text: "I am an airline AI Agent, I can help you to search for a new flight, respond to any of questions or I can also connect you to a human agent."
+  
+  utter_welcome_message:
+    - text: "Welcome, I'm airline AI Agent and I'm here to help you answer your questions, search for flights or connect to a human agent."
+      buttons:
+        - title: "Search flight"
+          payload: "search flight" 
+
+  utter_search_rating:
+    - text: "How would you rate the experience?"
+
+  utter_ask_departure_city:
+    - text: "Which city are you departing from?"
+
+  utter_ask_arrival_city:
+    - text: "Which city are you traveling to?"
+
+  utter_ask_departure_date:
+    - text: "What is your departure date? Please provide it in YYYY-MM-DD format."
+
+  utter_ask_return_date:
+    - text: "What is your return date? (Leave blank if it's a one-way trip.)"
+
+  utter_ask_travel_class:
+    - text: "Which travel class do you prefer? (Economy, Business, or First Class?)"
+
+  utter_flight_results:
+    - text: "Here are the available flights based on your search criteria."
+  
+  utter_thank_you_feedback:
+    - text: "Thank you for your feedback"
+      buttons:
+        - title: "👍"
+          payload: "1"
+        - title: "👍"
+          payload: "1" 
+  utter_card_blocked:
+   - text: "All done. Completed"
+
+  utter_ask_recipient:
+    - text: "Who would you like to send money to?"
+
+  utter_ask_amount:
+    - text: "How much money would you like to send?"
+
+  utter_transfer_complete:
+    - text: "All done. {amount} has been sent to {recipient}."
+
+  utter_free_chitchat_response:
+    - text: "placeholder"
+      metadata:
+        rephrase: True
+        rephrase_prompt: |
+          The following is a conversation with an AI assistant built with Rasa.
+          The assistant can help user search for flights, answer FAQs or connect to human.
+          The assistant doesn't know the answer to this question. The assisant never offers additonal services that are out of scope of its knowledge and no references to any resources.
+          Context / previous conversation with the user:
+          {{history}}
+          {{current_input}}
+          Suggested AI Response:
+
+         # The assistant is helpful, clever, and very friendly.
+         # The user is making small talk, and the assistant should respond, keeping things light.

@@ -1,0 +1,14 @@
+# Ignore environment files
+.env
+.venv/
+
+# Ignore Rasa model files
+models/
+
+# Ignore Rasa data files
+.rasa/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo

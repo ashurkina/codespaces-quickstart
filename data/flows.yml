@@ -1,0 +1,44 @@
+flows:
+  help_user:
+    description: User asks for help about what the assistant can do and how the assistant can help or assist
+    steps:
+      #agent response with how it can help
+      - action: utter_help_user
+
+  search_flight:
+    description: "Helps users search for available flights based on their travel details."
+    #don't forget to add slots to domain.yml
+    persisted_slots:
+      - departure_city
+      - arrival_city
+      - departure_date
+      - return_date
+      - travel_class
+    steps:
+      - collect: departure_city
+        description: "City where the user will depart from."
+        utter: utter_ask_departure_city
+      - collect: arrival_city
+        description: "City where the user wants to go."
+        utter: utter_ask_arrival_city
+      - collect: departure_date
+        description: "Date of departure in YYYY-MM-DD format."
+        utter: utter_ask_departure_date
+      - collect: return_date
+        description: "Date of return (optional, for round trips)."
+        utter: utter_ask_return_date
+      - collect: travel_class
+        description: "Travel class preference (e.g., economy, business, first class)."
+        utter: utter_ask_travel_class
+      - action: action_search_flights
+      - action: utter_flight_results
+      - link: collect_feedback
+
+  collect_feedback:
+    description: "Collects customer feedback after searching for flights."
+    steps:
+      - collect: search_rating
+        description: "User rates their flight search experience from 1-5."
+        utter: utter_search_rating
+      #add action to domain.yml file
+      - action: utter_thank_you_feedback
