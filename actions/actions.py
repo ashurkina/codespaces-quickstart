@@ -69,8 +69,18 @@ class ActionCheckVisaRequirements(Action):
             dispatcher.utter_message(text="I need both passport country and destination to check visa requirements.")
             return []
 
+        # Extract the last three user messages from tracker
+        user_messages = [
+            event["text"] for event in tracker.events 
+            if event.get("event") == "user" and "text" in event][-3:]  # Get the last three messages
+
+        context = "\n".join(user_messages) if user_messages else "No previous messages available."
+
+        # Construct the message with conversation context
+        message = f"You need to answer the user's question. Don't share any links to any resources or add any non-related information. Just answer the question. The user is traveling to {destination} with a {passport} passport. Here is the context of the conversation:\n\n {context}"
+
         # Call OpenAI function
-        visa_info = openai_visa_check(passport, destination)
+        visa_info = openai_visa_check(passport, destination, message)
 
         dispatcher.utter_message(text=f"Visa requirements: {visa_info}")
 

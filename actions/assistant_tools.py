@@ -32,7 +32,7 @@ def check_visa_requirements(passport: str, destination: str) -> dict:
         return {"error": f"API request failed: {response.status_code}, {response.text}"}
 
 
-def openai_visa_check(passport: str, destination: str) -> str:
+def openai_visa_check(passport: str, destination: str, message: str) -> str:
     """
     Uses OpenAI to process a visa check query.
     """
@@ -54,7 +54,7 @@ def openai_visa_check(passport: str, destination: str) -> str:
         }
     }]
 
-    messages = [{"role": "user", "content": f"Do I need a visa to visit {destination}? My passport is {passport}."}]
+    messages = [{"role": "user", "content": message}]
 
     completion = client.chat.completions.create(
         model="gpt-4o",

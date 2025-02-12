@@ -42,12 +42,18 @@ responses:
   utter_welcome_message:
     - text: "Welcome, I'm airline AI Agent and I'm here to help you answer your questions, search for flights or connect to a human agent."
       buttons:
-        - title: "Search flight"
-          payload: "search flight" 
+        - title: "Search flights"
+          payload: "search flights" 
+        - title: "Check visa requirements"
+          payload: "check visa requirements" 
 
   utter_search_rating:
     - text: "How would you rate the experience?"
-
+      buttons:
+      - title: "👍"
+        payload: "good"
+      - title: "👎"
+        payload: "bad" 
   utter_ask_departure_city:
     - text: "Which city are you departing from?"
 
@@ -55,35 +61,19 @@ responses:
     - text: "Which city are you traveling to?"
 
   utter_ask_departure_date:
-    - text: "What is your departure date? Please provide it in YYYY-MM-DD format."
+    - text: "What is your departure date?"
 
   utter_ask_return_date:
-    - text: "What is your return date? (Leave blank if it's a one-way trip.)"
+    - text: "What is your return date?"
 
   utter_ask_travel_class:
-    - text: "Which travel class do you prefer? (Economy, Business, or First Class?)"
+    - text: "Which travel class do you prefer?"
 
   utter_flight_results:
     - text: "Here are the available flights based on your search criteria."
   
   utter_thank_you_feedback:
     - text: "Thank you for your feedback"
-      buttons:
-        - title: "👍"
-          payload: "1"
-        - title: "👍"
-          payload: "1" 
-  utter_card_blocked:
-   - text: "All done. Completed"
-
-  utter_ask_recipient:
-    - text: "Who would you like to send money to?"
-
-  utter_ask_amount:
-    - text: "How much money would you like to send?"
-
-  utter_transfer_complete:
-    - text: "All done. {amount} has been sent to {recipient}."
 
   utter_info_from_database:
     - text: "Source: database."
