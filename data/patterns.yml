@@ -14,10 +14,11 @@ flows:
       - action: utter_free_chitchat_response
 
   pattern_search:
-    description: Flow for handling knowledge-based questions
+    description: Handle a knowledge-based question
     name: pattern search
     steps:
-      - action: utter_free_chitchat_response
+      - action: action_trigger_search
+      - action: utter_info_from_database
 
   pattern_human_handoff:
     description: Help user to connect to human agent when the user asks for human hand off.

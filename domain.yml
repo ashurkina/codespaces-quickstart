@@ -74,6 +74,9 @@ responses:
   utter_transfer_complete:
     - text: "All done. {amount} has been sent to {recipient}."
 
+  utter_info_from_database:
+    - text: "Source: database."
+
   utter_free_chitchat_response:
     - text: "placeholder"
       metadata:

@@ -9,5 +9,16 @@ pipeline:
 
 policies:
 - name: FlowPolicy
-#  - name: EnterpriseSearchPolicy
+
+- name: EnterpriseSearchPolicy
+  llm:
+    model_group: openai_llm
+  embeddings:
+    model_group: openai_embeddings
+  vector_store:
+    type: "faiss"
+    source: "./docs"
+
 assistant_id: 20250211-210351-beige-compass
+
+

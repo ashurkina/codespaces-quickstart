@@ -1,12 +1,12 @@
 flows:
   help_user:
-    description: User asks for help about what the assistant can do and how the assistant can help or assist
+    description: User asks for help about what the assistant can do and how the assistant can help
     steps:
       #agent response with how it can help
       - action: utter_help_user
 
   search_flight:
-    description: "Helps users search for available flights based on their travel details."
+    description: Helps users search for available flights based on their travel details. 
     #don't forget to add slots to domain.yml
     persisted_slots:
       - departure_city
@@ -35,7 +35,7 @@ flows:
       - link: collect_feedback
 
   collect_feedback:
-    description: "Collects customer feedback after searching for flights."
+    description: Collects customer feedback after searching for flights.
     steps:
       - collect: search_rating
         description: "User rates their flight search experience from 1-5."
