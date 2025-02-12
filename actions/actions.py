@@ -3,6 +3,8 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from rasa_sdk.events import ConversationPaused
+from actions.assistant_tools import openai_visa_check
+
 
 class ActionSearchFlights(Action):
     def name(self) -> Text:
@@ -52,3 +54,39 @@ class ActionHandoffToHuman(Action):
         dispatcher.utter_message(text="A human agent has been notified and will join shortly.")
         
         return [ConversationPaused()]
+
+
+class ActionCheckVisaRequirements(Action):
+    def name(self) -> Text:
+        return "action_check_visa_requirements"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Extracting entities (passport country and destination)
+        passport = tracker.get_slot("passport")
+        destination = tracker.get_slot("destination")
+
+        if not passport or not destination:
+            dispatcher.utter_message(text="I need both passport country and destination to check visa requirements.")
+            return []
+
+        # Call OpenAI function
+        visa_info = openai_visa_check(passport, destination)
+
+        dispatcher.utter_message(text=f"Visa requirements: {visa_info}")
+
+        return []    
+
+# class ActionCheckVisaRequirements(Action):
+#     def name(self) -> Text:
+#         return "action_check_visa_requirements"
+
+#     def run(
+#         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+#     ) -> List[Dict[Text, Any]]:
+
+#         # Extracting entities (passport country and destination)
+#         passport = tracker.get_slot("passport")
+#         destination = tracker.get_slot("destination")
+
+#         dispatcher.utter_message(text=f"The information is {passport} and {destination}")
+#         return []

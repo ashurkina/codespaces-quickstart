@@ -42,3 +42,17 @@ flows:
         utter: utter_search_rating
       #add action to domain.yml file
       - action: utter_thank_you_feedback
+
+  check_visa_requirements:
+    description: Check visa requirements for a given destination with a given passport, also check duration of allowed stay and passport validity.
+    persisted_slots:
+      - passport
+      - destination
+    steps:
+      - collect: destination
+        description: "For what country to check the requirements?"
+        utter: utter_visa_check_ask_destination
+      - collect: passport
+        description: "What citizenship passport the user will be travelling with?"
+        utter: utter_visa_check_ask_passport
+      - action: action_check_visa_requirements

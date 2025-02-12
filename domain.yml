@@ -3,6 +3,7 @@ version: "3.1"
 actions:
   - action_search_flights
   - action_handoff_to_human
+  - action_check_visa_requirements
 
 slots:
   departure_city:
@@ -23,8 +24,18 @@ slots:
     type: float
     min_value: 1
     max_value: 5
+  destination: 
+    type: text
+  passport: 
+    type: text
 
 responses:
+  utter_visa_check_ask_destination:
+    - text: "Which country are you traveling to?"
+
+  utter_visa_check_ask_passport:
+    - text: "Which country issued the passport you'll travel with?"
+
   utter_help_user:
     - text: "I am an airline AI Agent, I can help you to search for a new flight, respond to any of questions or I can also connect you to a human agent."
   
