@@ -22,10 +22,10 @@ flows:
         description: "City where the user wants to go."
         utter: utter_ask_arrival_city
       - collect: departure_date
-        description: "Date of departure in YYYY-MM-DD format."
+        description: "Date of departure."
         utter: utter_ask_departure_date
       - collect: return_date
-        description: "Date of return (optional, for round trips)."
+        description: "Date of return."
         utter: utter_ask_return_date
       - collect: travel_class
         description: "Travel class preference (e.g., economy, business, first class)."
