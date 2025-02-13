@@ -18,9 +18,36 @@ flows:
     name: pattern search
     steps:
       - action: action_trigger_search
-      - action: utter_info_from_database
-
+  
   pattern_human_handoff:
     description: Help user to connect to human agent when the user asks for human hand off.
     steps:
       - action: action_handoff_to_human
+
+  # pattern_completed:
+  #   description: Completion of a user's flow
+  #   steps:
+  #     - action: utter_can_do_something_else
+
+  pattern_completed:
+    description:  a flow has been completed and there is nothing else to be done
+    steps:
+      - noop:
+        next:
+          - if: context.previous_flow_name == 'help_user' or context.previous_flow_name == 'collect_feedback'
+            then:
+              - action: action_cancel_flow
+                next: END
+          - else:
+            #- action: utter_can_do_something_else
+           # - action: action_generate_suggestions
+            - action: action_generate_suggestions_custom
+
+              next: END
+  
+  pattern_cannot_handle:
+    description: assistant can not understand users request
+    steps:
+      - action: utter_cannot_handle
+     # - action: action_generate_suggestions
+      - action: action_generate_suggestions_custom

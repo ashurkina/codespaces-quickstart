@@ -4,6 +4,8 @@ actions:
   - action_search_flights
   - action_handoff_to_human
   - action_check_visa_requirements
+  - action_generate_suggestions
+  - action_generate_suggestions_custom
 
 slots:
   departure_city:
@@ -35,6 +37,9 @@ responses:
 
   utter_visa_check_ask_passport:
     - text: "Which country issued the passport you'll travel with?"
+  
+  utter_cannot_handle:
+    - text: "Sorry, I'm not sure I understand your request."
 
   utter_help_user:
     - text: "I am an airline AI Agent, I can help you to search for a new flight, respond to any of questions or I can also connect you to a human agent."
@@ -73,10 +78,10 @@ responses:
     - text: "Here are the available flights based on your search criteria."
   
   utter_thank_you_feedback:
-    - text: "Thank you for your feedback"
+    - text: "Thank you for your feedback."
 
-  utter_info_from_database:
-    - text: "Source: database."
+  utter_you_are_welcome:
+    - text: "You are very welcome! Is there anything else I can help you with?"
 
   utter_free_chitchat_response:
     - text: "placeholder"

@@ -1,9 +1,19 @@
 flows:
   help_user:
-    description: User asks for help about what the assistant can do and how the assistant can help
+    description: Explains to the user how it can be of help and what it can do, answers to How can you help, What can you do?
+    always_include_in_prompt: true
     steps:
       #agent response with how it can help
       - action: utter_help_user
+      - action: action_generate_suggestions
+
+  welcome:
+    description: Reply you are welcome to the user when the user shows gratitude and thanks assistant for help, answers to Thank you
+    always_include_in_prompt: true
+    steps:
+      #agent response with how it can help
+      - action: utter_you_are_welcome
+      - action: action_generate_suggestions
 
   search_flight:
     description: Helps users search for available flights based on their travel details. 
@@ -31,7 +41,7 @@ flows:
         description: "Travel class preference (e.g., economy, business, first class)."
         utter: utter_ask_travel_class
       - action: action_search_flights
-      - action: utter_flight_results
+      #- action: utter_flight_results
       - link: collect_feedback
 
   collect_feedback:
@@ -40,7 +50,6 @@ flows:
       - collect: search_rating
         description: "User rates their flight search experience from 1-5."
         utter: utter_search_rating
-      #add action to domain.yml file
       - action: utter_thank_you_feedback
 
   check_visa_requirements:

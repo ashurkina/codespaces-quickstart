@@ -44,7 +44,7 @@ action_endpoint:
 # Allow rephrasing of responses using a Rasa-hosted model
 nlg:
   type: rephrase
-  rephrase_all: true
+  rephrase_all: false
   prompt: prompt_template.jinja2
   llm:
     model_group: rasa_command_generation_model
