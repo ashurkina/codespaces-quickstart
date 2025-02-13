@@ -117,6 +117,6 @@ class ActionCheckVisaRequirements(Action):
         # Call OpenAI function
         visa_info = openai_visa_check(passport, destination, message)
 
-        dispatcher.utter_message(text=f"Visa requirements: {visa_info}")
+        dispatcher.utter_message(text=f"{visa_info}")
 
         return []   

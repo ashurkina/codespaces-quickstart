@@ -8,7 +8,6 @@ class ActionGenerateSuggestionsCustom(ActionGenerateSuggestions):
 
     def get_suggestion_list(self):
         suggestions = [
-        "Connect to human - I want to talk to a human agent",
         "Search flights - I want to search for flights",
         "Visa requirements - I want to check visa requirements",
         "Upgrade seats - How to upgrade my seats",
